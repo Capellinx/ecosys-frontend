@@ -23,7 +23,7 @@ export function RegisterForm() {
     <form className="space-y-4">
       <div className="space-y-2">
         <Label htmlFor="name">Nome Completo</Label>
-        <Input id="name" type="name" placeholder="exemplo@email.com" required />
+        <Input id="name" type="name" required />
       </div>
       <div className="space-y-2">
         <Label htmlFor="email">Email</Label>
