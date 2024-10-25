@@ -52,7 +52,7 @@ export function LoginForm() {
                </RadioGroup>
                <p className="text-sm">
                   <Link
-                     href="/reset-password"
+                     href="/forgot-password"
                      className="underline-offset-4 hover:text-primary font-bold text-[#1E9E6A] hover:text-[#1A714E]"
                      >
                      Esqueceu a senha?
