@@ -3,7 +3,7 @@
 import { RegisterForm } from "@/components/forms/register-form/register-form"
 import Link from "next/link"
 
-export default function AuthenticationPage() {
+export default function Page() {
 
   return (
       <div className="lg:p-8">
