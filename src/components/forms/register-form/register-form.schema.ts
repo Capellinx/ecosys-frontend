@@ -23,8 +23,8 @@ export const registerFormSchema = z.object({
          const replacedDoc = doc.replace(/\D/g, '');
          return !!Number(replacedDoc);
       }, 'CPF deve conter apenas números.'),
-   collaborator: z
-      .enum(["Analista", "ATA", "Condutor", "Voluntario", "Pesquisador"], {
+   personType: z
+      .enum(["ANALISTA", "ATA", "CONDUTOR", "VOLUNTARIO", "PESQUISADOR"], {
          required_error: "⚠️ Tipo de colaborador obrigatório"
       }),
    unity_conservation: z
