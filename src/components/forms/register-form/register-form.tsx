@@ -6,7 +6,6 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Eye, EyeOff } from "lucide-react"
-import { UnityConservationList } from "@/components/unity-conservations-list"
 import {
   Select,
   SelectContent,
@@ -27,10 +26,14 @@ import { registerFormSchema } from "./register-form.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { listCollaborators } from "./helpers/list-collaborators"
 import { maskCpf } from "@/utils/mask-cpf"
+import { UnityConservationList } from "./fragments/unity-conservation-list"
+import { useRegisterCollaborator } from "./hooks/use-register-collaborator"
 
 export function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setshowConfirmPassword] = useState(false)
+
+  const { handleRegisterCollaborator } = useRegisterCollaborator()
 
   const form = useForm<z.infer<typeof registerFormSchema>>({
     defaultValues: {
@@ -39,14 +42,14 @@ export function RegisterForm() {
       email: "",
       password: "",
       confirmPassword: "",
-      unity_conservation: ""
+      unity_conservation: "",
     },
     reValidateMode: "onChange",
     resolver: zodResolver(registerFormSchema)
   })
 
   function submitRegister(data: z.infer<typeof registerFormSchema>) {
-    console.log(data);
+    handleRegisterCollaborator(data)
   }
 
   return (
