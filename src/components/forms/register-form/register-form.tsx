@@ -5,7 +5,6 @@ import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Eye, EyeOff } from "lucide-react"
 import {
   Select,
   SelectContent,
@@ -30,8 +29,6 @@ import { UnityConservationList } from "./fragments/unity-conservation-list"
 import { useRegisterCollaborator } from "./hooks/use-register-collaborator"
 
 export function RegisterForm() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setshowConfirmPassword] = useState(false)
 
   const { handleRegisterCollaborator } = useRegisterCollaborator()
 
