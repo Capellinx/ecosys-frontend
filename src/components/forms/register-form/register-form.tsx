@@ -91,6 +91,31 @@ export function RegisterForm() {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Telefone</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    value={maskPhone(field.value)} // Exibe o telefone formatado
+                    onChange={(e) => {
+                      // Remove os caracteres indesejados antes de aplicar a máscara
+                      const unmaskedValue = e.target.value.replace(/[()\- ]/g, "");
+
+                      // Atualiza o campo com o valor desmascarado
+                      field.onChange(unmaskedValue);
+                    }}
+                    className={form.formState.errors.phone ? "border-red-500" : ""}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
 
           <FormField
             control={form.control}
