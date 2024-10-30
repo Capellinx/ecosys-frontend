@@ -16,7 +16,7 @@ export function useRegisterCollaborator() {
 
    async function onSubmitCollaborator(values: z.infer<typeof registerFormSchema>): Promise<void> {
       try {
-         const { data } = await api.post("/collaboratosr", values)
+         const { data } = await api.post("/collaborator", values)
 
          return data
       } catch (error) {
