@@ -1,7 +1,6 @@
 'use client'
 
 import { z } from "zod"
-import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -27,6 +26,7 @@ import { listCollaborators } from "./helpers/list-collaborators"
 import { maskCpf } from "@/utils/mask-cpf"
 import { UnityConservationList } from "./fragments/unity-conservation-list"
 import { useRegisterCollaborator } from "./hooks/use-register-collaborator"
+import { maskPhone } from "@/utils/mask-phone"
 
 export function RegisterForm() {
 
@@ -37,8 +37,7 @@ export function RegisterForm() {
       name: "",
       cpf: "",
       email: "",
-      password: "",
-      confirmPassword: "",
+      phone: "",
       unity_conservation: "",
     },
     reValidateMode: "onChange",
