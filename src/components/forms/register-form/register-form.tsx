@@ -141,7 +141,7 @@ export function RegisterForm() {
 
           <FormField
             control={form.control}
-            name="collaborator"
+            name="personType"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Tipo de colaborador</FormLabel>
@@ -150,7 +150,7 @@ export function RegisterForm() {
                     onValueChange={field.onChange}
                     defaultValue={field.value}
                   >
-                    <SelectTrigger className={form.formState.errors.collaborator ? "border-red-500 w-full" : "w-full"}>
+                    <SelectTrigger className={form.formState.errors.personType ? "border-red-500 w-full" : "w-full"}>
                       <SelectValue placeholder="Selecione um campo" />
                     </SelectTrigger>
                     <SelectContent ref={field.ref}>
