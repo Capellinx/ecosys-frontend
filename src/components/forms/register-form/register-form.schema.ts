@@ -30,6 +30,20 @@ export const registerFormSchema = z.object({
    unity_conservation: z
       .string({ required_error: "⚠️ Unidade é obrigatória" })
       .min(1, "⚠️ Unidade é obrigatória"),
+   phone: z
+      .string({ required_error: "⚠️ Telefone é obrigatório" })
+      .min(1, "⚠️ Telefone é obrigatório").refine((doc) => {
+         const replacedDoc = doc.replace(/\D/g, ''); 
+         return replacedDoc.length >= 10; 
+      }, 'Telefone deve conter no mínimo 10 dígitos.')
+      .refine((doc) => {
+         const replacedDoc = doc.replace(/\D/g, '');
+         return replacedDoc.length <= 15;
+      }, 'Telefone deve conter no máximo 15 dígitos.')
+      .refine((doc) => {
+         const replacedDoc = doc.replace(/\D/g, '');
+         return !!Number(replacedDoc);
+      }, 'Telefone deve conter apenas números.'),
    // matricula: z
    //    .string({ required_error: "⚠️ Matricula é obrigatória" })
    //    .min(1, "⚠️ Matricula é obrigatória")
