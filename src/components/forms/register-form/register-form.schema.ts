@@ -48,5 +48,3 @@ export const registerFormSchema = z.object({
    message: "⚠️ As senhas não correspondem",
    path: ["confirmPassword"],
 })
-
-export type registerFormDTO = z.infer<typeof registerFormSchema>
