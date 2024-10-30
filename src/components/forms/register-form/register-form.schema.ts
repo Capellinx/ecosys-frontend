@@ -24,10 +24,12 @@ export const registerFormSchema = z.object({
          return !!Number(replacedDoc);
       }, 'CPF deve conter apenas números.'),
    collaborator: z
-      .enum(["Analista", "ATA", "Condutor", "Voluntario", "Pesquisador"]),
-   // unity_conservation: z
-   //    .string({ required_error: "⚠️ Unidade é obrigatória" })
-   //    .min(1, "⚠️ Unidade é obrigatória"),
+      .enum(["Analista", "ATA", "Condutor", "Voluntario", "Pesquisador"], {
+         required_error: "⚠️ Tipo de colaborador obrigatório"
+      }),
+   unity_conservation: z
+      .string({ required_error: "⚠️ Unidade é obrigatória" })
+      .min(1, "⚠️ Unidade é obrigatória"),
    matricula: z
       .string({ required_error: "⚠️ Matricula é obrigatória" })
       .min(1, "⚠️ Matricula é obrigatória")
