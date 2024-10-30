@@ -30,10 +30,10 @@ export const registerFormSchema = z.object({
    unity_conservation: z
       .string({ required_error: "⚠️ Unidade é obrigatória" })
       .min(1, "⚠️ Unidade é obrigatória"),
-   matricula: z
-      .string({ required_error: "⚠️ Matricula é obrigatória" })
-      .min(1, "⚠️ Matricula é obrigatória")
-      .optional(),
+   // matricula: z
+   //    .string({ required_error: "⚠️ Matricula é obrigatória" })
+   //    .min(1, "⚠️ Matricula é obrigatória")
+   //    .optional(),
    password: z
       .string({ required_error: "⚠️ Senha é obrigatória" })
       .min(8, "⚠️ É nesessário ao menos 8 caracteres.")
