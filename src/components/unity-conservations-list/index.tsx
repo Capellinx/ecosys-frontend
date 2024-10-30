@@ -5,7 +5,6 @@ import { Check, ChevronsUpDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Label } from '@/components/ui/label';
 import {
    Command,
    CommandEmpty,
@@ -19,81 +18,79 @@ import {
    PopoverContent,
    PopoverTrigger,
 } from "@/components/ui/popover"
+import { listUnityConservation } from "./helpers/list-unity-conservation"
+import { Control } from "react-hook-form"
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
+import { z } from "zod"
+import { registerFormSchema } from "../forms/register-form/register-form.schema"
 
-const frameworks = [
-   {
-      value: "REVIS Arquipélago de Alcatrazes",
-      label: "REVIS Arquipélago de Alcatrazes",
-   },
-   {
-      value: "RESEX de Mandira",
-      label: "RESEX de Mandira",
-   },
-   {
-      value: "ESEC Tupiniquins",
-      label: "ESEC Tupiniquins",
-   },
-   {
-      value: "ARIE Ilha do Ameixal",
-      label: "ARIE Ilha do Ameixal",
-   },
-   {
-      value: "APA de Cananéia-Iguape-Peruíbe",
-      label: "APA de Cananéia-Iguape-Peruíbe",
-   },
-].sort((a, b) => a.label.localeCompare(b.label))
+interface IUseFormProps {
+   control: Control<z.infer<typeof registerFormSchema>>
+}
 
-export function UnityConservationList() {
-   const [open, setOpen] = React.useState(false)
-   const [value, setValue] = React.useState("")
+export function UnityConservationList({ control }: IUseFormProps) {
+   const [open, setOpen] = React.useState(false);
 
    return (
       <div className="space-y-2">
-         <Label>Unidade</Label>
-         <Popover open={open} onOpenChange={setOpen}>
-            <PopoverTrigger asChild>
-               <Button
-                  variant="outline"
-                  role="combobox"
-                  aria-expanded={open}
-                  className="w-full justify-between"
-               >
-                  {value
-                     ? frameworks.find((framework) => framework.value === value)?.label
-                     : "Selecione sua unidade..."}
-                  <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-               </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-full p-0">
-               <Command>
-                  <CommandInput placeholder="Procure sua unidade..." />
-                  <CommandList>
-                     <CommandEmpty>Nenhuma unidade encontrada.</CommandEmpty>
-                     <CommandGroup>
-                        {frameworks.map((framework) => (
-                           <CommandItem
-                              key={framework.value}
-                              value={framework.value}
-                              className="cursor-pointer"
-                              onSelect={(currentValue) => {
-                                 setValue(currentValue === value ? "" : currentValue)
-                                 setOpen(false)
-                              }}
-                           >
-                              <Check
-                                 className={cn(
-                                    "mr-2 h-4 w-4",
-                                    value === framework.value ? "opacity-100" : "opacity-0",
-                                 )}
-                              />
-                              {framework.label}
-                           </CommandItem>
-                        ))}
-                     </CommandGroup>
-                  </CommandList>
-               </Command>
-            </PopoverContent>
-         </Popover>
+         <FormField
+            control={control}
+            name="unity_conservation"
+            render={({ field }) => (
+               <FormItem>
+                  <FormLabel>Unidade</FormLabel>
+                  <FormControl>
+                     <div>
+                        <Popover open={open} onOpenChange={setOpen}>
+                           <PopoverTrigger asChild>
+                              <Button
+                                 variant="outline"
+                                 role="combobox"
+                                 aria-expanded={open}
+                                 className={control._formState.errors.unity_conservation ? "border-red-500 w-full justify-between" : "w-full justify-between"}
+                              >
+                                 {field.value
+                                    ? listUnityConservation.find((unityConservation) => unityConservation.value === field.value)?.label
+                                    : "Selecione sua unidade"}
+                                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                              </Button>
+                           </PopoverTrigger>
+                           <PopoverContent className="w-full p-0">
+                              <Command>
+                                 <CommandInput placeholder="Procure sua unidade..." />
+                                 <CommandList>
+                                    <CommandEmpty>Nenhuma unidade encontrada.</CommandEmpty>
+                                    <CommandGroup>
+                                       {listUnityConservation.map((unityConservation, _index) => (
+                                          <CommandItem
+                                             key={_index}
+                                             value={unityConservation.value}
+                                             className="cursor-pointer"
+                                             onSelect={(currentValue) => {
+                                                field.onChange(currentValue);
+                                                setOpen(false);
+                                             }}
+                                          >
+                                             <Check
+                                                className={cn(
+                                                   "mr-2 h-4 w-4",
+                                                   field.value === unityConservation.value ? "opacity-100" : "opacity-0",
+                                                )}
+                                             />
+                                             {unityConservation.label}
+                                          </CommandItem>
+                                       ))}
+                                    </CommandGroup>
+                                 </CommandList>
+                              </Command>
+                           </PopoverContent>
+                        </Popover>
+                     </div>
+                  </FormControl>
+                  <FormMessage />
+               </FormItem>
+            )}
+         />
       </div>
-   )
+   );
 }
