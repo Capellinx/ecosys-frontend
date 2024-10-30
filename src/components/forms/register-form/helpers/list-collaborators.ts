@@ -1,9 +1,9 @@
 const listCollaborators = [
-   "Analista",
+   "ANALISTA",
    "ATA",
-   "Condutor",
-   "Voluntario",
-   "Pesquisador"
+   "CONDUTOR",
+   "VOLUNTARIO",
+   "PESQUISADOR"
 ]
 
 export { listCollaborators }
