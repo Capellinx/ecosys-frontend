@@ -10,7 +10,19 @@ export const registerFormSchema = z.object({
       .min(1, "⚠️ E-mail é obrigatório"),
    cpf: z
       .string({ required_error: "⚠️ CPF é obrigatório" })
-      .min(1, "⚠️ CPF é obrigatório"),
+      .min(1, "⚠️ CPF é obrigatório")
+      .refine((doc) => {
+         const replacedDoc = doc.replace(/\D/g, '');
+         return replacedDoc.length >= 11;
+      }, 'CPF deve conter no mínimo 11 caracteres.')
+      .refine((doc) => {
+         const replacedDoc = doc.replace(/\D/g, '');
+         return replacedDoc.length <= 14;
+      }, 'CPF deve conter no máximo 14 caracteres.')
+      .refine((doc) => {
+         const replacedDoc = doc.replace(/\D/g, '');
+         return !!Number(replacedDoc);
+      }, 'CPF deve conter apenas números.'),
    collaborator: z
       .enum(["Analista", "ATA", "Condutor", "Voluntario", "Pesquisador"]),
    // unity_conservation: z
