@@ -7,13 +7,8 @@ export default function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-      >
-         <BannerLeft> 
-            {children}
-         </BannerLeft>
-      </body>
-    </html>
+    <BannerLeft>
+      {children}
+    </BannerLeft>
   );
 }
