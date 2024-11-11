@@ -2,7 +2,7 @@
 
 import { useMutation } from "@tanstack/react-query"
 import { z } from "zod"
-import { registerFormSchema } from "../register-form.schema"
+import { registerFormSchema } from "../schema/register-form.schema"
 import { api } from "@/services/api"
 import { AxiosError } from "axios"
 import toast from "react-hot-toast"
