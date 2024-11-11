@@ -20,7 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { useForm } from "react-hook-form"
-import { registerFormSchema } from "./register-form.schema"
+import { registerFormSchema } from "./schema/register-form.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { listCollaborators } from "./helpers/list-collaborators"
 import { maskCpf } from "@/utils/mask-cpf"
