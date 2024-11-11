@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 
 import { Control } from "react-hook-form"
 import { z } from "zod"
-import { registerFormSchema } from "../register-form.schema"
+import { registerFormSchema } from "../schema/register-form.schema"
 import { listUnityConservation } from "../helpers/list-unity-conservation"
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
